@@ -1,4 +1,23 @@
-# 📄 Policy Evidence Retrieval & Validation Agent
+# 📄 Policy Validation Agent
+
+## 🚀 Overview
+This project is an AI-based system that retrieves policy clauses, validates them against predefined rules, and generates intelligent explanations.
+
+---
+
+## 🧠 Key Features
+
+- 🔍 Policy retrieval using keyword search
+- 📄 Clause extraction (percentages & keywords)
+- ✅ Rule-based validation (Aligned / Partial / Missing)
+- 🤖 AI-style explanation generation
+- 📊 Confidence-based reporting
+
+---
+
+## 🏗️ System Workflow
+
+User Query → Retrieval → Extraction → Validation → Explanation → Report# 📄 Policy Evidence Retrieval & Validation Agent
 
 ## 🚀 Overview
 This project implements an AI-based system that retrieves policy clauses, extracts key information, and validates them against predefined rules.

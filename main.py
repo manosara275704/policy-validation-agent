@@ -2,31 +2,54 @@ from retrieval.retriever import load_policies, search_policies
 from extractor.clause_extractor import extract_clauses
 from validator.validator import validate_policies
 from report.report_generator import generate_report
+from explainer import generate_explanation
 
-# Load data
-data = load_policies("data/policies.csv")
+def run_agent():
 
-# Query
-query = "attendance"
+    print("\n=== POLICY VALIDATION AGENT ===\n")
 
-results = search_policies(data, query)
+    # Load data
+    data = load_policies("data/policies.csv")
 
-print("\n=== SEARCH RESULTS ===\n")
-print(results["policy_text"])
+    # Take user input
+    query = input("Enter policy query (e.g., attendance, grading, AI): ").strip().lower()
 
-# Extract clauses
-extracted = extract_clauses(results)
+    if not query:
+        print("❌ Please enter a valid query.")
+        return
 
-print("\n=== EXTRACTED CLAUSES ===\n")
-for item in extracted:
-    print(item)
+    # Retrieve policies
+    results = search_policies(data, query)
 
-# Validate
-validation = validate_policies(extracted)
+    if results.empty:
+        print("❌ No policies found for this query.")
+        return
 
-print("\n=== VALIDATION RESULTS ===\n")
-for v in validation:
-    print(v)
+    print("\n🔍 Retrieved Policies:\n")
+    for p in results["policy_text"]:
+        print("-", p)
+
+    # Extract clauses
+    extracted = extract_clauses(results)
+
+    # Validate
+    validation = validate_policies(extracted)
+
+    # Generate explanations
+    explanations = generate_explanation(validation)
+    
+    print("\n🤖 AI ANALYSIS:\n")
+
+    for e in explanations:
+        print(f"Policy: {e['policy']}")
+        print(f"Status: {e['status']}")
+        print(f"Explanation: {e['explanation']}\n")
+
+    # Final report
     report = generate_report(validation)
 
-print(report)
+    print(report)
+
+
+if __name__ == "__main__":
+    run_agent()

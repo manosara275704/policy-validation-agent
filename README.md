@@ -59,8 +59,13 @@ Report Generation
 
 ---
 
-## ▶️ How to Run
+#### ▶️ How to Run
 
-```bash
+1. Install dependencies:
 pip install -r requirements.txt
+
+2. Run the project:
 py main.py
+
+3. Enter query:
+attendance / grading / AI 
